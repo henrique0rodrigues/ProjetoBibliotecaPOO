@@ -1,5 +1,5 @@
 package pam.biblioteca;
-public class Livro {
+public class Livro implements Acoes{
     private String titulo;
     private int qtdPags;
     private String tipoCapa;
@@ -37,10 +37,12 @@ public class Livro {
         return genero;
     }
     
+    @Override
     public boolean disponivel(){
         return (this.qtdExemplares > 0);
     }
     
+    @Override
     public boolean emprestar(){
         if(this.disponivel()){
             this.qtdExemplares--;
@@ -52,6 +54,7 @@ public class Livro {
         }
     }
     
+    @Override
     public void devolver(){
         this.qtdExemplares++;
         System.out.println("O livro '"+ this.titulo +"' foi devolvido com sucesso!");
@@ -70,6 +73,7 @@ public class Livro {
                "---------------------------";
     }
     
+    @Override
     public void doar(){
         this.qtdExemplares++;
         System.out.println("Doacao recebida! O novo exemplar de '"+ this.titulo + "' ja esta disponivel!");
