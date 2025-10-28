@@ -63,20 +63,20 @@ public class Livro implements Acoes{
     
     @Override
     public String toString(){
-        return "--- Informações do livro ---" +
+        return "--- Informacoes do livro ---\n" + // Removido 'ç' e 'õ'
                "Titulo: " + titulo + "\n" +
                "Autor: " + autor + "\n" +
-               "Paginas: " + qtdPags + "\n" +
-               "Ano de Publicacao: " + anoPub + "\n" +
+               "Paginas: " + qtdPags + "\n" + // Removido 'á'
+               "Ano de Publicacao: " + anoPub + "\n" + // Removido 'ç' e 'ã'
                "Tipo de Capa: " + tipoCapa + "\n" +
-               "Exemplares Disponiveis: " + qtdExemplares + "\n" +
+               "Exemplares Disponiveis: " + qtdExemplares + "\n" + // Removido 'í'
                "---------------------------";
     }
     
     @Override
     public void doar(){
         this.qtdExemplares++;
-        System.out.println("Doacao recebida! O novo exemplar de '"+ this.titulo + "' ja esta disponivel!");
+        System.out.println("Doacao recebida! O novo exemplar de '"+ this.titulo + "' ja esta disponivel!"); // Removido 'ç', 'ã', 'á'
     }
     
 }
