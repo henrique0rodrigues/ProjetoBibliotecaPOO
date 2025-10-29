@@ -1,26 +1,25 @@
 package pam.biblioteca;
-public class Livro implements Acoes{
+
+public abstract class Livro implements Acoes {
+    
     private String titulo;
     private int qtdPags;
     private String tipoCapa;
     private String autor;
-    private String genero;
     private int anoPub;
     private int qtdExemplares = 0;
     
     public Livro(){}
     
-    public Livro(String titulo, int qtdPags, String tipoCapa, String autor, int anoPub, int qtdExemplares, String genero){
+    public Livro(String titulo, int qtdPags, String tipoCapa, String autor, int anoPub, int qtdExemplares){
         this.titulo = titulo;
         this.qtdPags = qtdPags;
         this.tipoCapa = tipoCapa;
         this.autor = autor;
         this.anoPub = anoPub;
         this.qtdExemplares = qtdExemplares;
-        this.genero = genero;
     }
     
-
     public String getTitulo() {
         return titulo;
     }
@@ -31,10 +30,6 @@ public class Livro implements Acoes{
 
     public int getQtdExemplares() {
         return qtdExemplares;
-    }
-    
-    public String getGenero(){
-        return genero;
     }
     
     @Override
@@ -48,7 +43,7 @@ public class Livro implements Acoes{
             this.qtdExemplares--;
             System.out.println("Emprestimo do livro '" + this.titulo + "' realizado com sucesso!");
             return true;
-        }else {
+        } else {
             System.out.println("Erro. nao ha exemplares disponiveis no momento.");
             return false;
         }
@@ -60,23 +55,20 @@ public class Livro implements Acoes{
         System.out.println("O livro '"+ this.titulo +"' foi devolvido com sucesso!");
     }
     
-    
-    @Override
-    public String toString(){
-        return "--- Informacoes do livro ---\n" + // Removido 'ç' e 'õ'
-               "Titulo: " + titulo + "\n" +
-               "Autor: " + autor + "\n" +
-               "Paginas: " + qtdPags + "\n" + // Removido 'á'
-               "Ano de Publicacao: " + anoPub + "\n" + // Removido 'ç' e 'ã'
-               "Tipo de Capa: " + tipoCapa + "\n" +
-               "Exemplares Disponiveis: " + qtdExemplares + "\n" + // Removido 'í'
-               "---------------------------";
-    }
-    
     @Override
     public void doar(){
         this.qtdExemplares++;
-        System.out.println("Doacao recebida! O novo exemplar de '"+ this.titulo + "' ja esta disponivel!"); // Removido 'ç', 'ã', 'á'
+        System.out.println("Doacao recebida! O novo exemplar de '"+ this.titulo + "' ja esta disponivel!");
     }
     
+    @Override
+    public String toString(){
+        return "--- Informacoes do livro ---\n" + 
+               "Titulo: " + titulo + "\n" +
+               "Autor: " + autor + "\n" +
+               "Paginas: " + qtdPags + "\n" +
+               "Ano de Publicacao: " + anoPub + "\n" +
+               "Tipo de Capa: " + tipoCapa + "\n" +
+               "Exemplares Disponiveis: " + qtdExemplares; 
+    }
 }
