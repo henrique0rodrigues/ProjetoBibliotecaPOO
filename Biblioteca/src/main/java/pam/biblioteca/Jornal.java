@@ -2,7 +2,7 @@ package pam.biblioteca;
 
 import java.time.LocalDate;
 
-public class Jornal implements Acoes {
+public abstract class Jornal implements Acoes {
     private String titulo;
     private String editora;
     private String editorChefe;

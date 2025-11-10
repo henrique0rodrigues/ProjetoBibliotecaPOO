@@ -1,3 +1,8 @@
 pam\biblioteca\Biblioteca.class
-pam\biblioteca\LivroDidatico.class
+pam\biblioteca\JornalDeHoje.class
 pam\biblioteca\Livro.class
+pam\biblioteca\Revista.class
+pam\biblioteca\LivroDidatico.class
+pam\biblioteca\Acoes.class
+pam\biblioteca\RevistaCarros.class
+pam\biblioteca\Jornal.class

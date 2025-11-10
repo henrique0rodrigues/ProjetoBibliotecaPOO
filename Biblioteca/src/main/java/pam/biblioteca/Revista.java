@@ -1,6 +1,6 @@
 package pam.biblioteca;
 
-public class Revista implements Acoes {
+public abstract class Revista implements Acoes {
     private String titulo;
     private int qtdPags;
     private String editora;
