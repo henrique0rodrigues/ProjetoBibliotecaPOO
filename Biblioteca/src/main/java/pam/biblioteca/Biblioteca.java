@@ -3,51 +3,47 @@ package pam.biblioteca;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 
 public class Biblioteca {
 
     private List<Acoes> acervo;
-    private Scanner scanner;
+    private Scanner leitor;
 
     public Biblioteca() {
         this.acervo = new ArrayList<>();
-        this.scanner = new Scanner(System.in);
+        this.leitor = new Scanner(System.in);
 
-        // --- CADASTRO AUTOMATICO DE EXEMPLOS ---
+        LivroDidatico livro1 = new LivroDidatico("Calculo Vol. 1", 500, "Brochura", "James Stewart", 2010, 10, "Matematica");
+        LivroDidatico livro2 = new LivroDidatico("Java: Como Programar", 800, "Capa Dura", "Deitel", 2018, 7, "Programacao");
+        this.acervo.add(livro1);
+        this.acervo.add(livro2);
 
-        LivroDidatico ld1 = new LivroDidatico("Calculo Vol. 1", 500, "Brochura", "James Stewart", 2010, 10, "Matematica");
-        LivroDidatico ld2 = new LivroDidatico("Java: Como Programar", 800, "Capa Dura", "Deitel", 2018, 7, "Programacao");
-        this.acervo.add(ld1);
-        this.acervo.add(ld2);
-
-        RevistaCarros r1 = new RevistaCarros("Revista AutoPower", 64, "MotorPress", "Mensal",
+        RevistaCarros revista1 = new RevistaCarros("Revista AutoPower", 64, "MotorPress", "Mensal",
                 58, 2025, 5, "Carros Esportivos", "Ferrari");
-        this.acervo.add(r1);
+        this.acervo.add(revista1);
 
-        JornalDeHoje j1 = new JornalDeHoje("Diario Nacional", "Editora Brasil", "Marcos Silva",
+        JornalDeHoje jornal1 = new JornalDeHoje("Diario Nacional", "Editora Brasil", "Marcos Silva",
                 "Atualidades", 1024, 24, 30,
                 "Novo recorde na producao de veiculos eletricos no pais");
-        this.acervo.add(j1);
+        this.acervo.add(jornal1);
     }
 
-    // ============ NOVO MÉTODO DE MENU PRINCIPAL ESCALONÁVEL ============
     public void menuPrincipal() {
-        int opcaoPrincipal;
+        int opcao;
 
         do {
-            System.out.println("\n=== MENU PRINCIPAL ===");
+            System.out.println("\nMENU PRINCIPAL");
             System.out.println("1. Adicionar Livro");
             System.out.println("2. Adicionar Revista");
             System.out.println("3. Adicionar Jornal");
             System.out.println("4. Listar Itens do Acervo");
             System.out.println("0. Sair");
             System.out.print("Escolha uma opcao: ");
-            opcaoPrincipal = scanner.nextInt();
-            scanner.nextLine(); // limpar buffer
+            
+            opcao = leitor.nextInt();
+            leitor.nextLine();
 
-            switch (opcaoPrincipal) {
+            switch (opcao) {
                 case 1 -> menuLivros();
                 case 2 -> menuRevistas();
                 case 3 -> menuJornais();
@@ -56,163 +52,176 @@ public class Biblioteca {
                 default -> System.out.println("Opcao invalida. Tente novamente.");
             }
 
-        } while (opcaoPrincipal != 0);
+        } while (opcao != 0);
     }
 
-    // ================= MENU LIVROS =================
     private void menuLivros() {
-        System.out.println("\n--- Menu de Livros ---");
+        System.out.println("\nMenu de Livros");
         System.out.println("1. Livro Didatico");
-        // Futuramente: 2. Livro Tecnico, 3. Livro Literario, etc.
         System.out.println("0. Voltar");
         System.out.print("Escolha o tipo: ");
-        int tipo = scanner.nextInt();
-        scanner.nextLine();
+        
+        int tipo = leitor.nextInt();
+        leitor.nextLine();
 
         switch (tipo) {
             case 1 -> adicionarLivroDidatico();
-            case 0 -> System.out.println("Voltando ao menu principal...");
-            default -> System.out.println("Tipo de livro invalido.");
+            case 0 -> System.out.println("Voltando...");
+            default -> System.out.println("Tipo invalido.");
         }
     }
 
-    // ================= MENU REVISTAS =================
     private void menuRevistas() {
-        System.out.println("\n--- Menu de Revistas ---");
+        System.out.println("\nMenu de Revistas");
         System.out.println("1. Revista de Carros");
-        // Futuramente: 2. Revista Cientifica, 3. Revista Moda, etc.
         System.out.println("0. Voltar");
         System.out.print("Escolha o tipo: ");
-        int tipo = scanner.nextInt();
-        scanner.nextLine();
+        
+        int tipo = leitor.nextInt();
+        leitor.nextLine();
 
         switch (tipo) {
             case 1 -> adicionarRevistaCarros();
-            case 0 -> System.out.println("Voltando ao menu principal...");
-            default -> System.out.println("Tipo de revista invalido.");
+            case 0 -> System.out.println("Voltando...");
+            default -> System.out.println("Tipo invalido.");
         }
     }
 
-    // ================= MENU JORNAIS =================
     private void menuJornais() {
-        System.out.println("\n--- Menu de Jornais ---");
+        System.out.println("\nMenu de Jornais");
         System.out.println("1. Jornal de Hoje");
-        // Futuramente: 2. Jornal Semanal, etc.
         System.out.println("0. Voltar");
         System.out.print("Escolha o tipo: ");
-        int tipo = scanner.nextInt();
-        scanner.nextLine();
+        
+        int tipo = leitor.nextInt();
+        leitor.nextLine();
 
         switch (tipo) {
             case 1 -> adicionarJornalDeHoje();
-            case 0 -> System.out.println("Voltando ao menu principal...");
-            default -> System.out.println("Tipo de jornal invalido.");
+            case 0 -> System.out.println("Voltando...");
+            default -> System.out.println("Tipo invalido.");
         }
     }
 
-    // ================= SUBCLASSE: LivroDidatico =================
     private void adicionarLivroDidatico() {
-        System.out.println("--- Adicionando Novo Livro Didatico ---");
+        System.out.println("Adicionando Novo Livro Didatico");
         System.out.print("Titulo: ");
-        String titulo = scanner.nextLine();
+        String titulo = leitor.nextLine();
+        
         System.out.print("Qtd de Paginas: ");
-        int pags = scanner.nextInt();
-        scanner.nextLine();
+        int paginas = leitor.nextInt();
+        leitor.nextLine();
+        
         System.out.print("Tipo de Capa: ");
-        String capa = scanner.nextLine();
+        String capa = leitor.nextLine();
+        
         System.out.print("Autor: ");
-        String autor = scanner.nextLine();
+        String autor = leitor.nextLine();
+        
         System.out.print("Ano de Publicacao: ");
-        int ano = scanner.nextInt();
-        scanner.nextLine();
+        int ano = leitor.nextInt();
+        leitor.nextLine();
+        
         System.out.print("Qtd de Exemplares: ");
-        int qtd = scanner.nextInt();
-        scanner.nextLine();
+        int quantidade = leitor.nextInt();
+        leitor.nextLine();
+        
         System.out.print("Materia: ");
-        String materia = scanner.nextLine();
+        String materia = leitor.nextLine();
 
-        LivroDidatico novo = new LivroDidatico(titulo, pags, capa, autor, ano, qtd, materia);
-        acervo.add(novo);
-        System.out.println("Livro Didatico '" + titulo + "' adicionado com sucesso!");
+        LivroDidatico novoLivro = new LivroDidatico(titulo, paginas, capa, autor, ano, quantidade, materia);
+        acervo.add(novoLivro);
+        System.out.println("Livro cadastrado com sucesso!");
     }
 
-    // ================= SUBCLASSE: RevistaCarros =================
     private void adicionarRevistaCarros() {
-        System.out.println("--- Adicionando Nova Revista de Carros ---");
+        System.out.println("Adicionando Nova Revista de Carros");
         System.out.print("Titulo: ");
-        String titulo = scanner.nextLine();
+        String titulo = leitor.nextLine();
+        
         System.out.print("Qtd de Paginas: ");
-        int pags = scanner.nextInt();
-        scanner.nextLine();
+        int paginas = leitor.nextInt();
+        leitor.nextLine();
+        
         System.out.print("Editora: ");
-        String editora = scanner.nextLine();
+        String editora = leitor.nextLine();
+        
         System.out.print("Periodicidade: ");
-        String periodicidade = scanner.nextLine();
+        String periodicidade = leitor.nextLine();
+        
         System.out.print("Numero da Edicao: ");
-        int numEd = scanner.nextInt();
-        scanner.nextLine();
+        int edicao = leitor.nextInt();
+        leitor.nextLine();
+        
         System.out.print("Ano de Publicacao: ");
-        int ano = scanner.nextInt();
-        scanner.nextLine();
+        int ano = leitor.nextInt();
+        leitor.nextLine();
+        
         System.out.print("Qtd de Exemplares: ");
-        int qtd = scanner.nextInt();
-        scanner.nextLine();
+        int quantidade = leitor.nextInt();
+        leitor.nextLine();
+        
         System.out.print("Tema: ");
-        String tema = scanner.nextLine();
+        String tema = leitor.nextLine();
+        
         System.out.print("Marca em Destaque: ");
-        String marca = scanner.nextLine();
+        String marca = leitor.nextLine();
 
-        RevistaCarros nova = new RevistaCarros(titulo, pags, editora, periodicidade, numEd, ano, qtd, tema, marca);
-        acervo.add(nova);
-        System.out.println("Revista de Carros '" + titulo + "' adicionada com sucesso!");
+        RevistaCarros novaRevista = new RevistaCarros(titulo, paginas, editora, periodicidade, edicao, ano, quantidade, tema, marca);
+        acervo.add(novaRevista);
+        System.out.println("Revista cadastrada com sucesso!");
     }
 
-    // ================= SUBCLASSE: JornalDeHoje =================
     private void adicionarJornalDeHoje() {
-        System.out.println("--- Adicionando Novo Jornal de Hoje ---");
+        System.out.println("Adicionando Novo Jornal");
         System.out.print("Titulo: ");
-        String titulo = scanner.nextLine();
+        String titulo = leitor.nextLine();
+        
         System.out.print("Editora: ");
-        String editora = scanner.nextLine();
+        String editora = leitor.nextLine();
+        
         System.out.print("Editor-Chefe: ");
-        String chefe = scanner.nextLine();
+        String editorChefe = leitor.nextLine();
+        
         System.out.print("Categoria: ");
-        String categoria = scanner.nextLine();
+        String categoria = leitor.nextLine();
+        
         System.out.print("Numero da Edicao: ");
-        int numEd = scanner.nextInt();
-        scanner.nextLine();
+        int edicao = leitor.nextInt();
+        leitor.nextLine();
+        
         System.out.print("Qtd de Paginas: ");
-        int pags = scanner.nextInt();
-        scanner.nextLine();
+        int paginas = leitor.nextInt();
+        leitor.nextLine();
+        
         System.out.print("Qtd de Exemplares: ");
-        int qtd = scanner.nextInt();
-        scanner.nextLine();
+        int quantidade = leitor.nextInt();
+        leitor.nextLine();
+        
         System.out.print("Manchete Principal: ");
-        String manchete = scanner.nextLine();
+        String manchete = leitor.nextLine();
 
-        JornalDeHoje novo = new JornalDeHoje(titulo, editora, chefe, categoria, numEd, pags, qtd, manchete);
-        acervo.add(novo);
-        System.out.println("Jornal de Hoje '" + titulo + "' adicionado com sucesso!");
+        JornalDeHoje novoJornal = new JornalDeHoje(titulo, editora, editorChefe, categoria, edicao, paginas, quantidade, manchete);
+        acervo.add(novoJornal);
+        System.out.println("Jornal cadastrado com sucesso!");
     }
 
-    // ================= LISTAGEM =================
     private void listarItens() {
         if (acervo.isEmpty()) {
             System.out.println("A biblioteca esta vazia.");
             return;
         }
-        System.out.println("\n--- Itens no Acervo ---");
+        System.out.println("\nItens no Acervo:");
         for (Acoes item : acervo) {
             System.out.println(item.toString());
             System.out.println("---------------------------");
         }
     }
 
-    // ================= MAIN =================
     public static void main(String[] args) {
         Biblioteca biblioteca = new Biblioteca();
         System.out.println("Bem-vindo ao Sistema da Biblioteca!");
         biblioteca.menuPrincipal();
-        biblioteca.scanner.close();
+        biblioteca.leitor.close();
     }
 }
