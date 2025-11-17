@@ -24,7 +24,6 @@ public abstract class Revista implements Acoes {
         this.tema = tema;
     }
 
-    // Getters
     public String getTitulo() {
         return titulo;
     }
