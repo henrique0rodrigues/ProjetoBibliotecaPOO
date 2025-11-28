@@ -1,8 +1,9 @@
 pam\biblioteca\Biblioteca.class
-pam\biblioteca\JornalDeHoje.class
 pam\biblioteca\Livro.class
-pam\biblioteca\Revista.class
-pam\biblioteca\LivroDidatico.class
-pam\biblioteca\Acoes.class
-pam\biblioteca\RevistaCarros.class
-pam\biblioteca\Jornal.class
+pam\biblioteca\RelatorioServicos.class
+pam\biblioteca\EmprestimoServicos.class
+pam\biblioteca\UsuarioServicos.class
+pam\biblioteca\AcervoServicos.class
+pam\biblioteca\Usuario.class
+pam\biblioteca\TicketEmprestimo.class
+pam\biblioteca\ItemBiblioteca.class
