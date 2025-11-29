@@ -4,56 +4,47 @@ import java.util.Scanner;
 
 public class Biblioteca {
 
-    // As camadas de serviço
     private UsuarioServicos usuarioService;
     private AcervoServicos acervoService;
     private EmprestimoServicos emprestimoService;
     private RelatorioServicos relatorioService;
 
     public Biblioteca() {
-        // Inicialização igual à anterior
+        
         this.usuarioService = new UsuarioServicos();
         this.acervoService = new AcervoServicos();
         this.emprestimoService = new EmprestimoServicos(acervoService, usuarioService);
         this.relatorioService = new RelatorioServicos(emprestimoService);
     }
 
-    // Getters
     public UsuarioServicos getUsuarioServicos() { return usuarioService; }
     public AcervoServicos getAcervoServicos() { return acervoService; }
     public EmprestimoServicos getEmprestimoServicos() { return emprestimoService; }
     public RelatorioServicos getRelatorioServicos() { return relatorioService; }
 
-    // --- MENU PRINCIPAL ---
     public static void main(String[] args) {
         Biblioteca biblio = new Biblioteca();
         Scanner scanner = new Scanner(System.in);
         boolean rodando = true;
 
         System.out.println("Sistema da Biblioteca Iniciado!");
-        
-        // --- CARREGANDO DADOS PREDEFINIDOS (PRESETS) ---
+           
         System.out.println("--- Carregando dados iniciais... ---");
 
-        // 1. Usuários
         biblio.getUsuarioServicos().cadastrarUsuario("U01", "Joao da Silva");
         biblio.getUsuarioServicos().cadastrarUsuario("U02", "Maria Oliveira");
         biblio.getUsuarioServicos().cadastrarUsuario("U03", "Pedro Santos");
 
-        // 2. Livros
         biblio.getAcervoServicos().cadastrarItem(new Livro("L01", "Dom Casmurro", "Machado de Assis"));
         biblio.getAcervoServicos().cadastrarItem(new Livro("L02", "Clean Code", "Robert C. Martin"));
 
-        // 3. Filmes
         biblio.getAcervoServicos().cadastrarItem(new Filme("F01", "O Poderoso Chefao", 175, "Coppola"));
         biblio.getAcervoServicos().cadastrarItem(new Filme("F02", "Interestelar", 169, "Nolan"));
 
-        // 4. Jogos
         biblio.getAcervoServicos().cadastrarItem(new JogoTabuleiro("J01", "Banco Imobiliario", 6));
         biblio.getAcervoServicos().cadastrarItem(new JogoTabuleiro("J02", "Catan", 4));
 
         System.out.println("--- Dados carregados! Menu liberado. ---\n");
-        // -----------------------------------------------
 
         while (rodando) {
             System.out.println("\n========= MENU =========");
@@ -70,7 +61,7 @@ public class Biblioteca {
             String opcao = scanner.nextLine();
 
             switch (opcao) {
-                case "1": // Cadastrar Usuário
+                case "1": 
                     System.out.print("ID do Usuario: ");
                     String idUser = scanner.nextLine();
                     System.out.print("Nome do Usuario: ");
@@ -78,7 +69,7 @@ public class Biblioteca {
                     biblio.getUsuarioServicos().cadastrarUsuario(idUser, nomeUser);
                     break;
 
-                case "2": // Cadastrar Livro
+                case "2":
                     System.out.print("ID do Livro: ");
                     String idLivro = scanner.nextLine();
                     System.out.print("Titulo: ");
@@ -88,7 +79,7 @@ public class Biblioteca {
                     biblio.getAcervoServicos().cadastrarItem(new Livro(idLivro, titLivro, autor));
                     break;
 
-                case "3": // Cadastrar Filme
+                case "3": 
                     System.out.print("ID do Filme: ");
                     String idFilme = scanner.nextLine();
                     System.out.print("Titulo: ");
@@ -100,7 +91,7 @@ public class Biblioteca {
                     biblio.getAcervoServicos().cadastrarItem(new Filme(idFilme, titFilme, duracao, diretor));
                     break;
 
-                case "4": // Cadastrar Jogo
+                case "4": 
                     System.out.print("ID do Jogo: ");
                     String idJogo = scanner.nextLine();
                     System.out.print("Titulo: ");
@@ -110,7 +101,7 @@ public class Biblioteca {
                     biblio.getAcervoServicos().cadastrarItem(new JogoTabuleiro(idJogo, titJogo, numJog));
                     break;
 
-                case "5": // Cadastrar Equipamento
+                case "5": 
                     System.out.print("ID do Equipamento: ");
                     String idEquip = scanner.nextLine();
                     System.out.print("Nome/Tipo: ");
@@ -120,7 +111,7 @@ public class Biblioteca {
                     biblio.getAcervoServicos().cadastrarItem(new Equipamento(idEquip, tipoEquip, marca));
                     break;
 
-                case "6": // Emprestar
+                case "6":
                     System.out.print("Digite o ID do Usuario: ");
                     String uId = scanner.nextLine();
                     System.out.print("Digite o ID do Item: ");
@@ -128,7 +119,7 @@ public class Biblioteca {
                     biblio.getEmprestimoServicos().registrarEmprestimo(uId, iId);
                     break;
 
-                case "7": // Relatório
+                case "7": 
                     biblio.getRelatorioServicos().gerarRelatorioEmprestimosAtivos();
                     break;
 

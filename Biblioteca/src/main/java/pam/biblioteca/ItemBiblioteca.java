@@ -7,7 +7,7 @@ public abstract class ItemBiblioteca {
     public ItemBiblioteca(String id, String titulo) {
         this.id = id;
         this.titulo = titulo;
-        this.disponivel = true; // Disponível por padrão ao criar
+        this.disponivel = true; 
     }
 
     public String getId() {

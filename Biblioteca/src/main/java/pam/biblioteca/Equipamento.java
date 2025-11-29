@@ -1,7 +1,7 @@
 package pam.biblioteca;
 
 public class Equipamento extends ItemBiblioteca {
-    private String marca; // Ex: Dell, Epson, etc.
+    private String marca; 
 
     public Equipamento(String id, String titulo, String marca) {
         super(id, titulo);

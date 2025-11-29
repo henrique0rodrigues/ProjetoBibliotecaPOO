@@ -24,7 +24,7 @@ public class UsuarioServicos {
 
     public boolean verificarStatusParaEmprestimo(String id) {
         Usuario u = bancoDeUsuarios.get(id);
-        // Verifica se existe e se NÃO está bloqueado
+
         return u != null && !u.isBloqueado();
     }
     

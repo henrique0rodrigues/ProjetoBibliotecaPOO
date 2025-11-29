@@ -16,13 +16,11 @@ public class TicketEmprestimo {
 
     @Override
     public String toString() {
-        // Formata a data
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String dataFmt = dataEmprestimo.format(formatter);
 
-        // Formatação limpa usando apenas indentação e quebra de linha
         return String.format(
-            "\n> REGISTRO DE EMPRÉSTIMO [%s]\n" +
+            "\n> REGISTRO DE EMPRESTIMO [%s]\n" +
             "    Cliente: %s\n" +
             "    Item:    %s",
             dataFmt,
