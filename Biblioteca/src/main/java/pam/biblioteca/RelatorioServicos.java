@@ -11,10 +11,10 @@ public class RelatorioServicos {
     }
 
     public void gerarRelatorioEmprestimosAtivos() {
-        System.out.println("\n--- RELATÓRIO: ITENS EMPRESTADOS ---");
+        System.out.println("\n--- RELATORIO: ITENS EMPRESTADOS ---");
         List<TicketEmprestimo> lista = fonteDeDados.getEmprestimosAtivos();
         if (lista.isEmpty()) {
-            System.out.println("Nenhum empréstimo ativo no momento.");
+            System.out.println("Nenhum emprestimo ativo no momento.");
         } else {
             for (TicketEmprestimo t : lista) {
                 System.out.println(t);

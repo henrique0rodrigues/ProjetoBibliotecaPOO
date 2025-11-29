@@ -1,7 +1,7 @@
-
 package pam.biblioteca;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class TicketEmprestimo {
     private Usuario usuario;
@@ -13,8 +13,21 @@ public class TicketEmprestimo {
         this.item = item;
         this.dataEmprestimo = LocalDate.now();
     }
+
     @Override
     public String toString() {
-        return "Ticket [User: " + usuario.getNome() + ", Item: " + item.getTitulo() + ", Data: " + dataEmprestimo + "]";
+        // Formata a data
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String dataFmt = dataEmprestimo.format(formatter);
+
+        // Formatação limpa usando apenas indentação e quebra de linha
+        return String.format(
+            "\n> REGISTRO DE EMPRÉSTIMO [%s]\n" +
+            "    Cliente: %s\n" +
+            "    Item:    %s",
+            dataFmt,
+            usuario.getNome(),
+            item.getTitulo()
+        );
     }
 }

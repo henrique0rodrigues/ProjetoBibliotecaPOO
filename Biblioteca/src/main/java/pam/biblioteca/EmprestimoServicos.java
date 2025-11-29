@@ -18,18 +18,18 @@ public class EmprestimoServicos {
     }
 
     public void registrarEmprestimo(String idUsuario, String idItem) {
-        System.out.println("\nTentando registrar empréstimo...");
+        System.out.println("\nTentando registrar emprestimo...");
 
         // 1. Validações usando os outros serviços
         boolean usuarioOk = usuarioServicos.verificarStatusParaEmprestimo(idUsuario);
         boolean itemOk = acervoServicos.verificarDisponibilidade(idItem);
 
         if (!usuarioOk) {
-            System.out.println("FALHA: Usuário inválido ou bloqueado.");
+            System.out.println("FALHA: Usuario invalido ou bloqueado.");
             return;
         }
         if (!itemOk) {
-            System.out.println("FALHA: Item não existe ou já está emprestado.");
+            System.out.println("FALHA: Item nao existe ou ja esta emprestado.");
             return;
         }
 
@@ -44,7 +44,7 @@ public class EmprestimoServicos {
         // Atualiza o status do item no acervo (Importante!)
         item.setDisponivel(false);
 
-        System.out.println("SUCESSO: Empréstimo realizado. " + ticket);
+        System.out.println("SUCESSO: Emprestimo realizado. " + ticket);
     }
 
     // Método auxiliar para o relatório

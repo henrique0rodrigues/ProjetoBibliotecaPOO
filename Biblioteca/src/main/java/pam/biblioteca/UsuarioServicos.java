@@ -10,11 +10,11 @@ public class UsuarioServicos {
 
     public void cadastrarUsuario(String id, String nome) {
         if (bancoDeUsuarios.containsKey(id)) {
-            System.out.println("Erro: Usuário com ID " + id + " já existe.");
+            System.out.println("Erro: Usuario com ID " + id + " ja existe.");
         } else {
             Usuario novoUser = new Usuario(id, nome);
             bancoDeUsuarios.put(id, novoUser);
-            System.out.println("--> Usuário cadastrado: " + novoUser);
+            System.out.println("--> Usuario cadastrado: " + novoUser);
         }
     }
 
@@ -32,7 +32,7 @@ public class UsuarioServicos {
         Usuario u = bancoDeUsuarios.get(id);
         if(u != null) {
              u.setBloqueado(status);
-             System.out.println("Status de bloqueio do usuário " + u.getNome() + " alterado para: " + status);
+             System.out.println("Status de bloqueio do usuario " + u.getNome() + " alterado para: " + status);
         }
     }
 }
