@@ -11,7 +11,7 @@ public class Biblioteca {
     private RelatorioServicos relatorioService;
 
     public Biblioteca() {
-        // Inicialização igual à anterior (mantendo a injeção de dependência)
+        // Inicialização igual à anterior
         this.usuarioService = new UsuarioServicos();
         this.acervoService = new AcervoServicos();
         this.emprestimoService = new EmprestimoServicos(acervoService, usuarioService);
@@ -31,6 +31,29 @@ public class Biblioteca {
         boolean rodando = true;
 
         System.out.println("Sistema da Biblioteca Iniciado!");
+        
+        // --- CARREGANDO DADOS PREDEFINIDOS (PRESETS) ---
+        System.out.println("--- Carregando dados iniciais... ---");
+
+        // 1. Usuários
+        biblio.getUsuarioServicos().cadastrarUsuario("U01", "Joao da Silva");
+        biblio.getUsuarioServicos().cadastrarUsuario("U02", "Maria Oliveira");
+        biblio.getUsuarioServicos().cadastrarUsuario("U03", "Pedro Santos");
+
+        // 2. Livros
+        biblio.getAcervoServicos().cadastrarItem(new Livro("L01", "Dom Casmurro", "Machado de Assis"));
+        biblio.getAcervoServicos().cadastrarItem(new Livro("L02", "Clean Code", "Robert C. Martin"));
+
+        // 3. Filmes
+        biblio.getAcervoServicos().cadastrarItem(new Filme("F01", "O Poderoso Chefao", 175, "Coppola"));
+        biblio.getAcervoServicos().cadastrarItem(new Filme("F02", "Interestelar", 169, "Nolan"));
+
+        // 4. Jogos
+        biblio.getAcervoServicos().cadastrarItem(new JogoTabuleiro("J01", "Banco Imobiliario", 6));
+        biblio.getAcervoServicos().cadastrarItem(new JogoTabuleiro("J02", "Catan", 4));
+
+        System.out.println("--- Dados carregados! Menu liberado. ---\n");
+        // -----------------------------------------------
 
         while (rodando) {
             System.out.println("\n========= MENU =========");
@@ -73,7 +96,6 @@ public class Biblioteca {
                     System.out.print("Diretor: ");
                     String diretor = scanner.nextLine();
                     System.out.print("Duracao (minutos): ");
-                    // Dica: Usamos Integer.parseInt para evitar bugs de pular linha
                     int duracao = Integer.parseInt(scanner.nextLine());
                     biblio.getAcervoServicos().cadastrarItem(new Filme(idFilme, titFilme, duracao, diretor));
                     break;
