@@ -20,6 +20,6 @@ public class Filme extends ItemBiblioteca {
 
     @Override
     public String toString() {
-        return super.getTitulo() + " [Filme - Dir: " + diretor + ", " + duracaoMinutos + "min]";
+        return super.getTitulo() + " [Filme - Dir: " + diretor + ", " + duracaoMinutos + "min]" + " (ID: "+ id +")";
     }
 }

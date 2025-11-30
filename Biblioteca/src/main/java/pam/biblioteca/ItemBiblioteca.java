@@ -13,15 +13,19 @@ public abstract class ItemBiblioteca {
     public String getId() {
         return id;
     }
+    
     public String getTitulo() {
         return titulo;
     }
+    
     public boolean isDisponivel() {
         return disponivel;
     }
+    
     public void setDisponivel(boolean disponivel) {
         this.disponivel = disponivel;
     }
+    
     @Override public String toString() {
         return titulo;
     }

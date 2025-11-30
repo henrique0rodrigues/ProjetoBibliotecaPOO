@@ -18,10 +18,22 @@ public class Biblioteca {
         this.relatorios = new RelatorioServicos(emprestimos, usuarios, acervo);
     }
 
-    public UsuarioServicos getUsuarios() { return usuarios; }
-    public AcervoServicos getAcervo() { return acervo; }
-    public EmprestimoServicos getEmprestimos() { return emprestimos; }
-    public RelatorioServicos getRelatorios() { return relatorios; }
+    public UsuarioServicos getUsuarios() {
+        return usuarios;
+    }
+    
+    public AcervoServicos getAcervo() {
+        return acervo;
+    }
+    
+    public EmprestimoServicos getEmprestimos() {
+        return emprestimos;
+    }
+    
+    public RelatorioServicos getRelatorios() {
+        return relatorios;
+    }
+    
 
     // ================= SUBMENU DE RELATORIOS =================
     public void menuRelatorios(Scanner scanner) {
@@ -35,19 +47,20 @@ public class Biblioteca {
             System.out.println("0. Voltar");
             System.out.print("Escolha uma opcao: ");
 
-            String opc = scanner.nextLine();
+            int opc = scanner.nextInt();
+            scanner.nextLine();
 
             switch (opc) {
-                case "1":
+                case 1:
                     relatorios.gerarRelatorioEmprestimosAtivos();
                     break;
-                case "2":
+                case 2:
                     relatorios.gerarRelatorioUsuariosCadastrados();
                     break;
-                case "3":
+                case 3:
                     relatorios.gerarRelatorioItensAcervo();
                     break;
-                case "0":
+                case 0:
                     voltar = true;
                     break;
                 default:
@@ -62,6 +75,7 @@ public class Biblioteca {
         Biblioteca biblio = new Biblioteca();
         Scanner scanner = new Scanner(System.in);
         boolean rodando = true;
+        
 
         System.out.println("Sistema da Biblioteca Iniciado!");
         System.out.println("--- Carregando dados iniciais... ---");
@@ -96,21 +110,22 @@ public class Biblioteca {
             System.out.println("0. Sair");
             System.out.print("Escolha uma opcao: ");
 
-            String opcao = scanner.nextLine();
-
+            int opcao = scanner.nextInt();
+            scanner.nextLine();
+            
             switch (opcao) {
 
-                case "1":
+                case 1:
                     System.out.print("ID do Usuario: ");
-                    String idU = scanner.nextLine();
+                    String idU = scanner.nextLine().toUpperCase();
                     System.out.print("Nome do Usuario: ");
                     String nomeU = scanner.nextLine();
                     biblio.getUsuarios().cadastrarUsuario(idU, nomeU);
                     break;
 
-                case "2":
+                case 2:
                     System.out.print("ID do Livro: ");
-                    String idLivro = scanner.nextLine();
+                    String idLivro = scanner.nextLine().toUpperCase();
                     System.out.print("Titulo: ");
                     String titLivro = scanner.nextLine();
                     System.out.print("Autor: ");
@@ -118,9 +133,9 @@ public class Biblioteca {
                     biblio.getAcervo().cadastrarItem(new Livro(idLivro, titLivro, autor));
                     break;
 
-                case "3":
+                case 3:
                     System.out.print("ID do Filme: ");
-                    String idFilme = scanner.nextLine();
+                    String idFilme = scanner.nextLine().toUpperCase();
                     System.out.print("Titulo: ");
                     String titFilme = scanner.nextLine();
                     System.out.print("Diretor: ");
@@ -130,9 +145,9 @@ public class Biblioteca {
                     biblio.getAcervo().cadastrarItem(new Filme(idFilme, titFilme, duracao, diretor));
                     break;
 
-                case "4":
+                case 4:
                     System.out.print("ID do Jogo: ");
-                    String idJogo = scanner.nextLine();
+                    String idJogo = scanner.nextLine().toUpperCase();
                     System.out.print("Titulo: ");
                     String titJogo = scanner.nextLine();
                     System.out.print("Numero max de jogadores: ");
@@ -140,9 +155,9 @@ public class Biblioteca {
                     biblio.getAcervo().cadastrarItem(new JogoTabuleiro(idJogo, titJogo, numJog));
                     break;
 
-                case "5":
+                case 5:
                     System.out.print("ID do Equipamento: ");
-                    String idEquip = scanner.nextLine();
+                    String idEquip = scanner.nextLine().toUpperCase();
                     System.out.print("Nome/Tipo: ");
                     String tipoEquip = scanner.nextLine();
                     System.out.print("Marca: ");
@@ -150,19 +165,22 @@ public class Biblioteca {
                     biblio.getAcervo().cadastrarItem(new Equipamento(idEquip, tipoEquip, marca));
                     break;
 
-                case "6":
-                    System.out.print("ID do Usuario: ");
-                    String usrId = scanner.nextLine();
-                    System.out.print("ID do Item: ");
-                    String itemId = scanner.nextLine();
+                case 6:
+                    biblio.relatorios.gerarRelatorioUsuariosCadastrados();
+                    System.out.print("\nID do Usuario: ");
+                    String usrId = scanner.nextLine().toUpperCase();
+                    
+                    biblio.relatorios.gerarRelatorioItensAcervo();
+                    System.out.print("\nID do Item: ");
+                    String itemId = scanner.nextLine().toUpperCase();
                     biblio.getEmprestimos().registrarEmprestimo(usrId, itemId);
                     break;
 
-                case "7":
+                case 7:
                     biblio.menuRelatorios(scanner);
                     break;
 
-                case "0":
+                case 0:
                     rodando = false;
                     System.out.println("Encerrando sistema...");
                     break;

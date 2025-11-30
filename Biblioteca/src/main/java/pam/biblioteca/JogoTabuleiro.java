@@ -14,6 +14,6 @@ public class JogoTabuleiro extends ItemBiblioteca {
 
     @Override
     public String toString() {
-        return super.getTitulo() + " (Jogo para " + numeroJogadores + " pessoas)";
+        return super.getTitulo() + " (Jogo para " + numeroJogadores + " pessoas)"+ " (ID: "+ id +")";
     }
 }

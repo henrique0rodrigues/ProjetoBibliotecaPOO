@@ -5,4 +5,9 @@ class Livro extends ItemBiblioteca {
         super(id, titulo);
         this.autor = autor;
     }
+    
+    @Override
+    public String toString() {
+        return super.getTitulo() + " Autor: " + autor + " (ID: "+ id +")";
+    }
 }

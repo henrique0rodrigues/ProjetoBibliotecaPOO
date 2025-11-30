@@ -14,6 +14,6 @@ public class Equipamento extends ItemBiblioteca {
 
     @Override
     public String toString() {
-        return super.getTitulo() + " [Equipamento - Marca: " + marca + "]";
+        return super.getTitulo() + " [Equipamento - Marca: " + marca + "]" + " (ID: "+ id +")";
     }
 }
