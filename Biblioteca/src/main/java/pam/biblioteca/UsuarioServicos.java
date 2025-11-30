@@ -3,6 +3,8 @@ package pam.biblioteca;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UsuarioServicos {
 
@@ -35,4 +37,9 @@ public class UsuarioServicos {
              System.out.println("Status de bloqueio do usuario " + u.getNome() + " alterado para: " + status);
         }
     }
+    
+    public List<Usuario> getTodosUsuarios() {
+        return new ArrayList<>(this.bancoDeUsuarios.values());
+    }
+
 }

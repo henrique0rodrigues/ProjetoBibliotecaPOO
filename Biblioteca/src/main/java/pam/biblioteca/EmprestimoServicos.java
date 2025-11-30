@@ -46,10 +46,10 @@ public class EmprestimoServicos {
 
         System.out.println("SUCESSO: Emprestimo realizado. " + ticket);
     }
-
+   
     // Método auxiliar para o relatório
     public List<TicketEmprestimo> getEmprestimosAtivos() {
-        return emprestimosAtivos;
+        return new ArrayList<>(emprestimosAtivos);
     }
 } 
 
