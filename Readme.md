@@ -78,5 +78,7 @@ O projeto é executado diretamente na IDE NetBeans, através da classe:
 
 ---
 
-## 👨‍💻 Autor
-Projeto desenvolvido para estudo prático de POO em Java.
+## 👨‍💻 Autores
+- Guilherme Miller Gama Cardoso
+- Victor Henrick Santos Andrade
+- Henrique Oliveira Rodrigues
